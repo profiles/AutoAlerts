@@ -117,9 +117,9 @@ extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             CFNotificationCenterPostNotification(
                 CFNotificationCenterGetDistributedCenter(), 
-                (CFStringRef)[NSString stringWithFormat:@"com.shiftcmdk.autoalerts.delete.%@", self.app.infos[indexPath.row].identifier], 
-                NULL, 
-                NULL, 
+                (CFStringRef)@"com.shiftcmdk.autoalerts",
+                NULL,
+                (CFDictionaryRef)@{@"action":@"delete",@"data":self.app.infos[indexPath.row].identifier},
                 YES
             );
 

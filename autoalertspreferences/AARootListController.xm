@@ -244,9 +244,9 @@ extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void
         UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:@"Delete" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             CFNotificationCenterPostNotification(
                 CFNotificationCenterGetDistributedCenter(), 
-                (CFStringRef)[NSString stringWithFormat:@"com.shiftcmdk.autoalerts.deletewithbundleid.%@", self.apps[indexPath.row].bundleID], 
-                NULL, 
-                NULL, 
+                (CFStringRef)@"com.shiftcmdk.autoalerts",
+                NULL,
+                (CFDictionaryRef)@{@"action":@"deletewithbundleid",@"bid":self.apps[indexPath.row].bundleID},
                 YES
             );
 
@@ -275,10 +275,10 @@ extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void
 	[defaults setBool:sender.isOn forKey:@"enabled"];
 
 	CFNotificationCenterPostNotification(
-		CFNotificationCenterGetDistributedCenter(), 
-		(CFStringRef)@"com.shiftcmdk.autoalerts.toggle", 
-		NULL, 
-		NULL, 
+        CFNotificationCenterGetDistributedCenter(), 
+        (CFStringRef)@"com.shiftcmdk.autoalerts",
+        NULL,
+		(CFDictionaryRef)@{@"action":@"toggle"}, 
 		YES
 	);
 }

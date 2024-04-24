@@ -217,9 +217,9 @@ extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void
 
     CFNotificationCenterPostNotification(
         CFNotificationCenterGetDistributedCenter(), 
-        (CFStringRef)[NSString stringWithFormat:@"com.shiftcmdk.autoalerts.save.%@ %@", bundleID, jsonString], 
-        NULL, 
-        NULL, 
+        (CFStringRef)@"com.shiftcmdk.autoalerts",
+        NULL,
+        (CFDictionaryRef)@{@"action":@"save",@"bid":bundleID,@"data":jsonString},
         YES
     );
 }

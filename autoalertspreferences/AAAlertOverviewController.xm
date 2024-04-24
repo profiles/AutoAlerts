@@ -91,9 +91,9 @@ extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void
 -(void)postDeleteNotificationAndPopViewController {
     CFNotificationCenterPostNotification(
         CFNotificationCenterGetDistributedCenter(), 
-        (CFStringRef)[NSString stringWithFormat:@"com.shiftcmdk.autoalerts.delete.%@", self.alertInfo.identifier], 
-        NULL, 
-        NULL, 
+        (CFStringRef)@"com.shiftcmdk.autoalerts",
+        NULL,
+        (CFDictionaryRef)@{@"action":@"delete",@"data":self.alertInfo.identifier},
         YES
     );
 
@@ -294,9 +294,9 @@ extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void
 
             CFNotificationCenterPostNotification(
                 CFNotificationCenterGetDistributedCenter(), 
-                (CFStringRef)[NSString stringWithFormat:@"com.shiftcmdk.autoalerts.save.%@ %@", self.alertInfo.bundleID, jsonString], 
-                NULL, 
-                NULL, 
+                (CFStringRef)@"com.shiftcmdk.autoalerts",
+                NULL,
+                (CFDictionaryRef)@{@"action":@"save",@"data":jsonString,@"bid":self.alertInfo.bundleID},
                 YES
             );
         } else {
