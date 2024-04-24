@@ -1,5 +1,6 @@
 #import "AACoreDataStack.h"
 #import <CoreData/CoreData.h>
+#include <roothide/roothide.h>
 
 @interface AACoreDataStack ()
 
@@ -16,11 +17,11 @@
 
 -(id)init {
     if (self = [super init]) {
-        NSURL *url = [NSURL fileURLWithPath:@"/Library/PreferenceBundles/AutoAlertsPreferences.bundle/AutoAlerts.momd"];
+        NSURL *url = [NSURL fileURLWithPath:jbroot(@"/Library/PreferenceBundles/AutoAlertsPreferences.bundle/AutoAlerts.momd")];
 		
 		NSManagedObjectModel *model = [[[NSManagedObjectModel alloc] initWithContentsOfURL:url] autorelease];
 		
-        NSString *dir = @"/var/mobile/Library/Preferences/AutoAlerts/";
+        NSString *dir = jbroot(@"/var/mobile/Library/Preferences/AutoAlerts/");
 
         BOOL isSpringBoard = [[NSBundle mainBundle].bundleIdentifier isEqual:@"com.apple.springboard"];
 

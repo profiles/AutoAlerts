@@ -1,6 +1,7 @@
 #import "AutoAlerts.h"
 #import "AAConfigurationViewController.h"
 #import "AAAlertManager.h"
+#include <roothide/roothide.h>
 
 extern "C" CFNotificationCenterRef CFNotificationCenterGetDistributedCenter(void);
 
@@ -287,7 +288,7 @@ static void *sbObserver = NULL;
 
         autoAlertsEnabled = [defaults objectForKey:@"enabled"] == nil || [defaults boolForKey:@"enabled"];
     } else {
-        NSDictionary *prefsDict = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.shiftcmdk.autoalertspreferences.plist"];
+        NSDictionary *prefsDict = [NSDictionary dictionaryWithContentsOfFile:jbroot(@"/var/mobile/Library/Preferences/com.shiftcmdk.autoalertspreferences.plist")];
 
         autoAlertsEnabled = !prefsDict || [prefsDict objectForKey:@"enabled"] == nil || [[prefsDict objectForKey:@"enabled"] boolValue];
     }
